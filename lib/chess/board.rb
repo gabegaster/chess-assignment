@@ -28,8 +28,6 @@
 module Chess
   class Board
     HEADER_STRING = "    a b c d e f g h".color(:green)
-    BLANK_ROW = {"a" => nil, "b" => nil, "c" => nil, "d" => nil, "e" => nil, "f" => nil, "g" => nil, "h" => nil}
-    BLANK_BOARD = {1 =>  nil, 2 => nil, 3 =>  nil, 4 =>  nil, 5 =>  nil, 6 =>  nil, 7 =>  nil, 8 =>  nil} 
     WHITE_PIECES = {
       "a1" => Chess::Pieces::Rook,
       "b1" => Chess::Pieces::Base,     # Knight
@@ -46,7 +44,7 @@ module Chess
       "e2" => Chess::Pieces::Base,     # Pawn
       "f2" => Chess::Pieces::Base,     # Pawn
       "g2" => Chess::Pieces::Base,     # Pawn
-      "h2" => Chess::Pieces::Base     # Pawn
+      "h2" => Chess::Pieces::Base      # Pawn
     }
     BLACK_PIECES = {
       "a8" => Chess::Pieces::Rook,
@@ -64,7 +62,7 @@ module Chess
       "e7" => Chess::Pieces::Base,     # Pawn
       "f7" => Chess::Pieces::Base,     # Pawn
       "g7" => Chess::Pieces::Base,     # Pawn
-      "h7" => Chess::Pieces::Base     # Pawn
+      "h7" => Chess::Pieces::Base      # Pawn
     }
 
     PLAYERS = ['White', 'Black']
@@ -72,8 +70,26 @@ module Chess
     attr_reader :turn
 
     def initialize
-      @board = BLANK_BOARD.dup
-      @board.each { |key, val| @board[key] = BLANK_ROW.dup }
+      row = {
+        "a" => nil, 
+        "b" => nil,
+        "c" => nil,
+        "d" => nil,
+        "e" => nil,
+        "f" => nil,
+        "g" => nil,
+        "h" => nil
+      }
+      @board = {
+        1 => row.dup,
+        2 => row.dup,
+        3 => row.dup,
+        4 => row.dup,
+        5 => row.dup,
+        6 => row.dup,
+        7 => row.dup,
+        8 => row.dup
+      }
       WHITE_PIECES.each do |position, piece_class|
         set_piece(position, piece_class.new("White"))
       end
