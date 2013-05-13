@@ -18,7 +18,7 @@ The interface will look something like this.
 
 The main class if Chess::Board.  It maintains
 all the state (piece positions and whose turn it
-is). It receives `move` commands, which come as
+is). It receives move commands, which come as
 pairs of coordinate strings, and then delegates
 to the Chess::Vector class to create a representation
 of the move. Then it checks that the move is legal,
@@ -50,12 +50,12 @@ To complete this game, you'll have to do three things.
    the board, and answer questions like "How far left or right is this piece trying to move?"
    or "How much up or down is the piece trying to move?"
 2. Finish defining the chess pieces themselves.
-3. Write the `#move` method on the Board class. 
+3. Write the #move method on the Board class. 
 
 The test suite is already written.  It has about 90 tests, most of which
 are currently broken.
 
-There is also a command-line interface to the game (`bin/ruby-chess`), which you can use to play it
+There is also a command-line interface to the game (bin/ruby-chess), which you can use to play it
 as you build out more functionality. Right now it will render the board, but all the
 pieces except the Rooks and the Bishops are just placeholders, and will appear as an X.
 If you try to move them, they won't move and you'll be told the move was invalid.
