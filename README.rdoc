@@ -1,0 +1,62 @@
+=== Ruby Chess
+
+This is a simple, command-line chess game.
+The interface will look something like this.
+     
+      $> bin/ruby-chess
+
+         a b c d e f g h
+      1  R N B K Q B N R
+      2  p p p p p p p p
+      3  . . . . . . . .
+      4  . . . . . . . .
+      5  . . . . . . . .
+      6  . . . . . . . .
+      7  p p p p p p p p
+      8  R N B K Q B N R
+      White's move>
+
+The main class if Chess::Board.  It maintains
+all the state (piece positions and whose turn it
+is). It receives `move` commands, which come as
+pairs of coordinate strings, and then delegates
+to the Chess::Vector class to create a representation
+of the move. Then it checks that the move is legal,
+based on a number of rules.  Specifically, the move is
+not legal if
+1. You are "moving" a piece in place, i.e. not really moving it.
+2. You are moving nothing, i.e. the start position is an empty square with no piece on it.
+3. You are moving the other player's piece. The board knows whose turn it is, and will only let you move pieces of that color.
+5. The piece in question cannot jump (i.e. anything but a knight) and there is no direct path between the start and end positions.
+7. You are trying to land on your own piece.
+
+If all the move does not fail for any of these conditions, then
+the board delegates to the piece that is being moves to see if the
+move is legal for that piece - each class of piece knows its own
+movement rules.
+
+Finally, if the piece can make the move, the board will move the piece
+to its new location.
+
+Important helper classes are the pieces themselves, which know the movement
+rules, and Chess::Vector, which breaks the move down into its X and Y coordinates.
+The pieces need to look at the Vector to see if their move is legal, and the 
+move rules are written in terms of dx and dy, which are available as properties
+on the vector.
+
+=== Your Assignment
+To complete this game, you'll have to do three things.
+1. Fill in the Vector class. This class models a piece's movement across
+   the board, and answer questions like "How far left or right is this piece trying to move?"
+   or "How much up or down is the piece trying to move?"
+2. Finish defining the chess pieces themselves.
+3. Write the `#move` method on the Board class. 
+
+The test suite is already written.  It has about 90 tests, most of which
+are currently broken.
+
+There is also a command-line interface to the game (`bin/ruby-chess`), which you can use to play it
+as you build out more functionality. Right now it will render the board, but all the
+pieces except the Rooks and the Bishops are just placeholders, and will appear as an X.
+If you try to move them, they won't move and you'll be told the move was invalid.
+As you define the different pieces and their movement rules, the game will become playable.
