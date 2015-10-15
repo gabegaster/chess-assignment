@@ -62,4 +62,4 @@ If you try to move them, they won't move and you'll be told the move was invalid
 As you define the different pieces and their movement rules, the game will become playable.
 
 === Out Of Scope
-Advanced rules like Castling are not required, but bonus points if you implement them as well.
+Advanced rules like Castling and en passant are not required, but bonus points if you implement them as well.
